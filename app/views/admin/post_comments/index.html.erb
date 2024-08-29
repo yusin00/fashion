@@ -1,0 +1,29 @@
+<%= form_with url: admin_post_comments_path, method: :get do |f| %>
+  <%= f.search_field :keyword, value: params[:keyword] %>
+  <%= f.submit "search" %>
+<% end %>
+
+<div>
+  <p>コメント件数：<%= @post_comments.count %></p>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th width="55%">コメント</th>
+        <th width="15%">投稿者</th>
+        <th width="15%">登校日時</th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post_comments.each do |post_comment| %>
+        <tr>
+          <td><%= simple_format(post_comment.comment) %></td>
+          <td><%= post_comment.user.name %></td>
+          <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "削除", admin_post_comment_path(post_comment),method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

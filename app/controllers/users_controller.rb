@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def mypage
     @users=User.all
+    @users = @users.where('name LIKE ?', "%#{params[:keyword]}%").or(
+             @users.where('email LIKE ?', "%#{params[:keyword]}%")) if params[:keyword].present?
   end
 
   def show
@@ -28,13 +30,13 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :email)
   end
-  
+
   def correct_user
-    @user = User.find_by_id(params[:id])  
+    @user = User.find_by_id(params[:id])
     redirect_to new_user_registration_path if @user != current_user
   end
 end

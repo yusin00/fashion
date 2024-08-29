@@ -1,0 +1,38 @@
+<h2>画像詳細</h2>
+
+<div>
+  <%= image_tag @post_image.image if @post_image.image.attached? %>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <p>コメント件数：<%= @post_image.post_comments.count %></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th width="50%">コメント</th>
+          <th width="25%">投稿者</th>
+          <th width="25%">登校日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post_image.post_comments.each do |post_comment| %>
+          <tr>
+            <td><%= simple_format(post_comment.comment) %></td>
+            <td><%= post_comment.user.name %></td>
+            <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-md-4">
+    <%= form_with model: [@post_image, @post_comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control mb-3" %>
+      <%= f.submit "送信する", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "投稿に戻る", @post_image.post, class: "btn btn-secondary" %>

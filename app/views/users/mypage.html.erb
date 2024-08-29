@@ -1,10 +1,15 @@
 <h1>マイページ</h1>
 
+<%= form_with url:  mypage_path, method: :get do |f| %>
+  <%= f.search_field :keyword, value: params[:keyword] %>
+  <%= f.submit "search" %>
+<% end %>
+
 <h1>投稿一覧</h1>
 
 <%= @users.each do |user| %>
 
   <p>タイトル</p>
   <span><%= user.title %></span>
-  
+
 <% end %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Meshiterro</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-2">
+        <% if admin_signed_in? %>
+          <%= link_to "users", admin_dashboards_path, class: "btn btn-primary btn-block" %>
+          <%= link_to "comments", admin_post_comments_path, class: "btn btn-primary btn-block" %>
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-secondary btn-block" %>
+        <% end %>
+      </div>
+      <div class="col-md-10">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

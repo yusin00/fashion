@@ -23,9 +23,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post=Post.find(params[:id])
-    @posts=@post.user
-
+    @post = Post.find(params[:id])
+    @post_images = @post.post_images
+    @post_comment = PostComment.new
+    @post_comments = PostComment.includes(:post_image).where('post_images.post_id': @post.id)
   end
 
   def edit
