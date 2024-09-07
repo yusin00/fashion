@@ -2,11 +2,11 @@
   <div class="col-sm-9 offset-sm-2 col-md-7 offset-md-3">
     <h1 class="my-5"><%= @user.name %></h1>
     <% @posts.each do |post| %>
-      <%= link_to post.title, post_path(post.id) %>
+      <%= link_to_if !current_admin, post.title, post_path(post.id) %>
       <% if post.post_images.any? %>
         <% post.post_images.each do |post_image| %>
           <% if post_image.image.attached? %>
-            <%= link_to post_path(post.id) do %>
+            <%= link_to_if !current_admin, post_path(post.id) do %>
               <%= image_tag post_image.image, size: "100x100" %>
             <% end %>
           <% else %>
@@ -18,16 +18,16 @@
       <% end %>
     <% end %>
   </div>
-  <% if current_user && @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-    <p><%= link_to "退会する", user_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" } %></p>
-  <% end %>
-  
-  <% if current_admin %>
-    <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-  <% end %>
 </div>
 
+<% if current_user && @user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %></p>
+  <p><%= link_to "退会する", user_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %></p>
+<% end %>
+
+<% if current_admin %>
+  <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+<% end %>
 
 
 

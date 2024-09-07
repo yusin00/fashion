@@ -7,9 +7,4 @@
 
 <h1>投稿一覧</h1>
 
-<%= @users.each do |user| %>
-
-  <p>タイトル</p>
-  <span><%= user.title %></span>
-
-<% end %>
+<%= render "posts/posts", posts: @posts %>

@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def mypage
-    @users=User.all
-    @users = @users.where('name LIKE ?', "%#{params[:keyword]}%").or(
-             @users.where('email LIKE ?', "%#{params[:keyword]}%")) if params[:keyword].present?
+    #@users=User.all
+    #@users = @users.where('name LIKE ?', "%#{params[:keyword]}%").or(
+    #         @users.where('email LIKE ?', "%#{params[:keyword]}%")) if params[:keyword].present?
+    @user = current_user
+    @posts = @user.posts
   end
 
   def show

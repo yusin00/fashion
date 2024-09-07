@@ -1,67 +1,64 @@
-<%= form_with url:  post_path(@post.id), method: :get do |f| %>
-  <%= f.search_field :keyword, value: params[:keyword] %>
-  <%= f.submit "search" %>
-<% end %>
 <h1 class="my-5">投稿詳細</h1>
-<h2 class="my-2"><%= @post.title %></h2>
-  <%# if @post.image.attached? %>
-     <%#= image_tag @post.image, size: "400x400" %>
-  <%# else %>
-     <%#= image_tag 'no_image', size: "400x400" %>
-  <%# end %>
-<%= link_to @post.title, post_path(@post.id) %>
-<div class="row">
-  <% if @post_images.any? %>
-    <% @post_images.each do |post_image| %>
-      <% if post_image.image.attached? %>
-        <div class="col-sm-6 col-md-4 col-lg-3">
-          <%= link_to post_image_path(post_image) do %>
-            <%= image_tag post_image.image, class: "w-100" %>
+<div class="card mt-5">
+   <div class="card-body">
+     <div class="d-flex justify-content-between">
+        <h2 class="my-2"><%= @post.title %></h2>
+        <div>
+          <% if current_user == @post.user %>
+            <%= link_to "Edit", edit_post_path(@post), class: "btn btn-success"  %>
+            <%= link_to "Destroy", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"   %>
           <% end %>
         </div>
+     </div>
+
+    
+    <div class="row">
+      <% if @post_images.any? %>
+        <% @post_images.each do |post_image| %>
+          <% if post_image.image.attached? %>
+            <div class="col-sm-6 col-md-4">
+              <%= link_to post_image_path(post_image) do %>
+                <%= image_tag post_image.image, class: "w-100" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="col-sm-6 col-md-4">
+          <%= image_tag 'no_image', size: "100x100" %>
+        </div>
       <% end %>
-    <% end %>
-  <% else %>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <%= image_tag 'no_image', size: "100x100" %>
     </div>
-  <% end %>
+  </div>
 </div>
 
-<h2 class="my-5">説明文</h2>
+<h2 class="mt-5">説明文</h2>
 <div class="">
   <%= @post.body %>
 </div>
 
-<div class="">
-  <p>コメント件数：<%= @post_comments.count %></p>
-  <table class="table table-bordered">
-    <thead>
+<h2 class="mt-5">コメント一覧</h2>
+<p>コメント件数：<%= @post_comments.count %></p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th width="55%">コメント</th>
+      <th width="15%">投稿者</th>
+      <th width="15%">投稿日時</th>
+      <th width="15%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_comments.each do |post_comment| %>
       <tr>
-        <th width="55%">コメント</th>
-        <th width="15%">投稿者</th>
-        <th width="15%">登校日時</th>
-        <th width="15%"></th>
+        <td><%= simple_format(post_comment.comment) %></td>
+        <td><%= post_comment.user.name %></td>
+        <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= link_to "画像を見る", post_image_path(post_comment.post_image), class: "btn btn-primary" %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @post_comments.each do |post_comment| %>
-        <tr>
-          <td><%= simple_format(post_comment.comment) %></td>
-          <td><%= post_comment.user.name %></td>
-          <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <td><%= link_to "画像を見る", post_image_path(post_comment.post_image), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-</div>
-
-<% if current_user == @post.user %>
-  <%= link_to "Edit", edit_post_path(@post)  %>
-  <%= link_to "Destroy", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？" %>
-<% end %>
+    <% end %>
+  </tbody>
+</table>
 
 
 
