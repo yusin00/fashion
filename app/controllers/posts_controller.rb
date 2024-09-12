@@ -13,13 +13,14 @@ class PostsController < ApplicationController
   def create
     @post=Post.new(post_params)
     @post.user_id = current_user.id
-      if@post.save
-        flash[:notice] = "success"
-        redirect_to post_path(@post.id)
-      else
-        flash.now[:alert] = "failed"
-        render :new
-      end
+    if@post.save
+      flash[:notice] = "success"
+      redirect_to post_path(@post.id)
+    else
+      (3 - @post.post_images.size).times { @post.post_images.build }
+      flash.now[:alert] = "failed"
+      render :new
+    end
   end
 
   def show
@@ -31,24 +32,30 @@ class PostsController < ApplicationController
 
   def edit
     @post=Post.find(params[:id])
+    (3 - @post.post_images.size).times { @post.post_images.build }
   end
 
   def update
-    post=Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "success"
+      redirect_to post_path(@post.id)
+    else
+      @post.post_images.reload
+      flash.now[:alert] = "failed"
+      render :edit
+    end
   end
 
   def destroy
     post=Post.find(params[:id])
     post.destroy
-    redirect_to post_path
-
+    redirect_to posts_path
   end
 
   private
   # ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :body, post_images_attributes: [:image, :title, :body])
+    params.require(:post).permit(:title, :body, post_images_attributes: [:image, :title, :body, :id])
   end
 end

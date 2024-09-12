@@ -11,7 +11,7 @@
         </div>
      </div>
 
-    
+
     <div class="row">
       <% if @post_images.any? %>
         <% @post_images.each do |post_image| %>
@@ -49,12 +49,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @post_comments.each do |post_comment| %>
+    <% if @post_comments.any? %>
+      <% @post_comments.each do |post_comment| %>
+        <tr>
+          <td><%= simple_format(post_comment.comment) %></td>
+          <td><%= post_comment.user.name %></td>
+          <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "画像を見る", post_image_path(post_comment.post_image), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr>
-        <td><%= simple_format(post_comment.comment) %></td>
-        <td><%= post_comment.user.name %></td>
-        <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= link_to "画像を見る", post_image_path(post_comment.post_image), class: "btn btn-primary" %></td>
+        <td colspan="4">コメントはまだありません。</td>
       </tr>
     <% end %>
   </tbody>

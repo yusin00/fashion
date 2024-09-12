@@ -23,6 +23,10 @@
           <td><%= link_to "詳細", post_path(post.id), class: "btn btn-outline-primary" %></td>
         </tr>
       <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4">投稿がまだありません。</td>
+      </tr>
     <% end %>
   </tbody>
 </table>

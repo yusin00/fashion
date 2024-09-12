@@ -1,0 +1,30 @@
+<%= form_with model: post do |f| %>
+  <%= render "layouts/error_messages", model: post %>
+
+  <div class="mb-2">
+    <%= f.label :title, "タイトル", class: "h4" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <%= f.fields_for :post_images do |ff| %>
+    <div class="mb-2">
+      <%= ff.label :title, class: "h4" %>
+      <%= ff.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-2">
+      <%= ff.label :image, "画像", class: "h4" %>
+      <%= ff.file_field :image, accept: "image/*", class: "form-control" %>
+      <%= image_tag ff.object.image if !ff.object.new_record? && ff.object.image.attached? %>
+    </div>
+    <hr>
+  <% end %>
+
+  <div class="mb-2">
+    <%= f.label :body, "本文", class: "h4" %>
+    <%= f.text_area :body, rows: 5, class: "form-control" %>
+  </div>
+
+  <div class="my-4">
+    <%= f.submit '投稿', class: "btn btn-primary px-4 btn-block" %>
+  </div>
+<% end %>
