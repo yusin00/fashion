@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:new,:index, :show,:create,:edit,:update,:destroy]
     resources :comments, only: [:index, :destroy,:create]
   resources :users, only: [:show,:edit,:update,:destroy]
-  resources :favorites, only: [:index,:create,:update,]
+  
   get "/home/about" => "homes#about", as: "about"
   get 'mypage' => 'users#mypage'
 
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :post_images, only: [:new, :create, :index, :show, :destroy] do
     resources :post_comments, only: [:create, :destroy]
+    resources :favorites, only: [:index,:create,:update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
