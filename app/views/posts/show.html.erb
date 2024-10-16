@@ -5,8 +5,8 @@
         <h2 class="my-2"><%= @post.title %></h2>
         <div>
           <% if current_user == @post.user %>
-            <%= link_to "Edit", edit_post_path(@post), class: "btn btn-success"  %>
-            <%= link_to "Destroy", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"   %>
+            <%= link_to "編集", edit_post_path(@post), class: "btn btn-success"  %>
+            <%= link_to "投稿の削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"   %>
           <% end %>
         </div>
      </div>
@@ -28,9 +28,29 @@
           <%= image_tag 'no_image', size: "100x100" %>
         </div>
       <% end %>
+       <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+          <div class="text-black-50 bg-white"><%= @post.user.name %></div>
+        </div>
+       </div>
     </div>
   </div>
 </div>
+
+<!-- タグの表示部分 -->
+<div class="tags">
+  <h3>タグ:</h3>
+  <% @tags.each do |tag| %>
+    <span class="tag">
+      <%= link_to tag.name, tag_path(tag) %>  <!-- タグをクリックするとそのタグに関連する投稿一覧へリンク -->
+    </span>
+  <% end %>
+</div>
+
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+
+
 
 <h2 class="mt-5">説明文</h2>
 <div class="">
@@ -65,6 +85,8 @@
     <% end %>
   </tbody>
 </table>
+
+
 
 
 
