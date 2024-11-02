@@ -69,4 +69,3 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
-gem "sassc", "2.1.0"
