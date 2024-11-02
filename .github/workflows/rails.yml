@@ -4,15 +4,15 @@ on:
   push:
     branches: [main]
     
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Setup Node.js
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node.js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+        cache: npm
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         USER_NAME: ${{ secrets.USER_NAME }}
