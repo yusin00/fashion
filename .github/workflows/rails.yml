@@ -8,11 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup Node.js
     - uses: actions/setup-node@v4
+    - name: Setup Node.js
       with:
-        node-version: "20"
-        cache: npm
+        node-version: 20
+        cache: 'npm'
+
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         USER_NAME: ${{ secrets.USER_NAME }}
