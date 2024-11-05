@@ -2,12 +2,11 @@
 
 <% @posts.each do |post| %>
   <div class="post">
-    <h2><%= link_to post.title, post_path(post) %></h2>
-    <p><%= truncate(post.body, length: 100) %></p>
-    
     <% if post.image.attached? %>  <!-- 画像が添付されているか確認 -->
-      <%= image_tag post.image %>  <!-- 投稿の画像を表示 -->
+      <%= image_tag post.image, size: "100x100" %>  <!-- 投稿の画像を表示 -->
+      <h2><%= link_to post.title, post_path(post) %></h2>
+      <p><%= truncate(post.body, length: 100) %></p>
     <% end %>
-    
+
   </div>
 <% end %>
