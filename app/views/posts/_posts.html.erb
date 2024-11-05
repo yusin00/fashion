@@ -13,11 +13,7 @@
         <tr>
           <td><%= post.title %></td>
           <td>
-            <% if post.post_images.any? %>
-              <%= image_tag post.post_images.first.image, size: "100x100" if post.post_images&.first&.image&.attached? %> 
-            <% else %>
-              <%= image_tag 'no_image.jpg', size: "100x100" %>
-            <% end %>
+            <%= image_tag post.image,size: "100x100" %>
           </td>
           <td><%= post.body.truncate(15) %></td>
           <td><%= link_to "詳細", post_path(post.id), class: "btn btn-outline-primary" %></td>

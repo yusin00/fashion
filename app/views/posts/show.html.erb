@@ -1,39 +1,20 @@
-<h1 class="my-5">投稿詳細</h1>
+<h1 class="my-5"><%= @post.title %></h1>
 <div class="card mt-5">
    <div class="card-body">
-     <div class="d-flex justify-content-between">
-        <h2 class="my-2"><%= @post.title %></h2>
-        <div>
+      <span class="d-flex justify-content-between">
+        <%= image_tag @post.image,size: "200x200" %>
+        <div class="text-black-50 bg-white"><%= @post.user.name %></div>
+      <span class="d-flex flex-row-reverse">
+        <span class="p-2">
+
           <% if current_user == @post.user %>
             <%= link_to "編集", edit_post_path(@post), class: "btn btn-success"  %>
             <%= link_to "投稿の削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"   %>
           <% end %>
-        </div>
-     </div>
+        </span>
+      </span>
 
-
-    <div class="row">
-      <% if @post_images.any? %>
-        <% @post_images.each do |post_image| %>
-          <% if post_image.image.attached? %>
-            <div class="col-sm-6 col-md-4">
-              <%= link_to post_image_path(post_image) do %>
-                <%= image_tag post_image.image, class: "w-100" %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <div class="col-sm-6 col-md-4">
-          <%= image_tag 'no_image', size: "100x100" %>
-        </div>
-      <% end %>
-       <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-          <div class="text-black-50 bg-white"><%= @post.user.name %></div>
-        </div>
        </div>
-    </div>
   </div>
 </div>
 
@@ -46,11 +27,6 @@
     </span>
   <% end %>
 </div>
-
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-
-
 
 <h2 class="mt-5">説明文</h2>
 <div class="">
