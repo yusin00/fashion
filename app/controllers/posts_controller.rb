@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  def test
+  end
   def index
     @posts = Post.all
     
