@@ -1,0 +1,29 @@
+<%= content_for(:bg_area) do %>
+  <div class="jumbotron jumbotron-fluid bg_area">
+    <div class="container">
+      <h1 class="display-4">ファッション</h1>
+      <p class="lead">コーディネートを共有できるコミュニティサイト</p>
+    </div>
+  </div>
+<% end %>
+
+
+ここから
+
+<%= content_for(:bg_area) do %>
+  <div class="jumbotron jumbotron-fluid bg_area">
+    <div class="container">
+      <h1 class="display-4">コーディネートを共有できるコミュニティサイト</h1>
+    </div>
+  </div>
+<% end %>
+
+<section class="container-fluid px-0">
+  <div class="row align-items-center">
+    <div class="col-6">
+      <h2 class="text-center">服好きな方</h2>
+    </div>
+    <div class="col-6">
+      <div class="jumbotron jumbotron-fluid hu_ku">
+  </div>
+</section>

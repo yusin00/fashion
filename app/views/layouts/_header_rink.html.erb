@@ -10,28 +10,28 @@
         <ul class="nav nav-tabs">
         <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "投稿一覧", posts_path,  class: 'nav-link text-dark'%></a>
+              <%= link_to "投稿一覧", posts_path,  class: 'nav-link text-dark'%>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark'%></a>
+              <%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark'%>
             </li>
              <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %></a>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
           <% else %>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark'%></a>
+              <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark'%>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %></a>
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %></a>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
             </li>
           </ul>
         <% end %>
-        </ul>  
+        </ul>
       </ul>
     </div>
   </div>

@@ -1,8 +1,15 @@
 @use '~bootstrap/scss/bootstrap.scss';
 
 .bg_area {
-  height: 60vh;
-  background-image: url("../images/IMG_1983.JPG");
+  height: 70vh;
+  width: 100%;
+  background-image: url("../images/IMG_E1155.JPG");
   background-size: cover;
-  background-position: center center;
+  background-position: top 20% left 50%;
+}
+
+.lead {
+  font-size:50px;
+  font-weight: bold;
+  position: absolute;
 }
