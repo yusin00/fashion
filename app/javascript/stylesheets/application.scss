@@ -1,5 +1,9 @@
 @use '~bootstrap/scss/bootstrap.scss';
 
+.kuu-haku{
+  margin-top: 100px;
+}
+
 .bg_area {
   height: 70vh;
   width: 100%;
@@ -8,9 +12,6 @@
   background-position: top 20% left 50%;
 }
 
-.topapage-fashion{
-  background-color: 	#D9E5FF;
-}
 
 .lead {
   font-size:50px;
@@ -38,4 +39,8 @@
 
 .nav-huto{
    font-weight: bold;
+}
+
+.namae{
+  margin-top: 400px;
 }
