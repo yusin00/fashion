@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'tags/show'
   devise_for :users
   root to: 'homes#top'
-  resources :posts, only: [:new,:index, :show,:create,:edit,:update,:destroy]
+  resources :posts, only: [:new,:index, :show,:create,:edit,:update,:destroy,:test]
     resources :comments, only: [:index, :destroy,:create]
   resources :users, only: [:show,:edit,:update,:destroy]
   resources :tags, only: [:show]
