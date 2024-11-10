@@ -44,3 +44,8 @@
 .namae{
   margin-top: 400px;
 }
+
+.img-fluid {
+  max-width: 100%; /* 親要素の幅に合わせる */
+  height: auto;    /* 高さを自動調整 */
+}
