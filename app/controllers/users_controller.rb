@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    if @user.update(user_params)
+    redirect_to @user # users#show にリダイレクト
+  else
+    render :edit # エラーハンドリング
+  end
   end
 
   def edit

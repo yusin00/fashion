@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     
+    
     if params[:search].present?
       posts = Post.posts_search(params[:search])
     elsif params[:tag_id].present?
