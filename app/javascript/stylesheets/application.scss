@@ -32,9 +32,9 @@
 }
 
 .code-end{
-  text-align: right;
   color:#000011;
-  
+  text-align: center;
+
 }
 
 .nav-huto{
@@ -48,4 +48,8 @@
 .img-fluid {
   max-width: 100%; /* 親要素の幅に合わせる */
   height: auto;    /* 高さを自動調整 */
+}
+
+.mozi-mozi{
+  margin-top: 100px;
 }
