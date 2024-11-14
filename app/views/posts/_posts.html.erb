@@ -1,9 +1,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>タイトル</th>
-      <th>写真</th>
-      <th>本文</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
       <th></th>
     </tr>
   </thead>
@@ -11,9 +11,9 @@
     <% if posts.any? %>
       <% posts.each do |post| %>
         <tr>
-          <td><%= post.title %></td>
+          <td><div class="list-title"><%= post.title %></div> </td>
           <td>
-            <%= image_tag post.image,size: "100x100" %>
+            <%= image_tag post.image,size: "100x100", class: "list-images" %>
           </td>
           <td><%= post.body.truncate(15) %></td>
           <td><%= link_to "詳細", post_path(post.id), class: "btn btn-outline-primary" %></td>
